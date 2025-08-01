@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stylish Product Slider</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://cdn.discordapp.com/attachments/1274637991716982827/1400793792910721044/JOHcr3o.png?ex=688dee61&is=688c9ce1&hm=26a18bae66675e8c75b46ac5ccac6d592df5819a774d38036c8613d8fb914d97&') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .product-card {
+      width: 480px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      backdrop-filter: blur(5px);
+      animation: popIn 0.5s ease-in-out;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.95); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+
+    .slider img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+      border-radius: 12px;
+    }
+
+    .slider img.active {
+      display: block;
+    }
+
+    .thumbnails {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .thumbnails img {
+      width: 60px;
+      height: 60px;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      cursor: pointer;
+      object-fit: cover;
+      transition: 0.2s;
+    }
+
+    .thumbnails img.selected {
+      border-color: #e91e63;
+    }
+
+    .product-description {
+      margin-top: 20px;
+      font-size: 15px;
+      color: #444;
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    .product-description strong {
+      color: #222;
+    }
+
+    .sizes {
+      margin: 20px 0 10px;
+    }
+
+    .sizes button {
+      padding: 10px 18px;
+      margin: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: #f4f4f4;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .sizes button:hover {
+      background-color: #ddd;
+    }
+
+    .sizes button.active {
+      background: #e91e63;
+      color: white;
+      border-color: #e91e63;
+    }
+
+    .buy-button {
+      display: inline-block;
+      background: #e91e63;
+      color: white;
+      padding: 14px 30px;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 16px;
+      margin-top: 15px;
+      transition: background 0.3s;
+    }
+
+    .buy-button:hover {
+      background: #c2185b;
+    }
+  </style>
+</head>
+<body>
+
+ <div class="product-card">
+    <div class="slider">
+      <img src="https://cdn.discordapp.com/attachments/1274637991716982827/1400759195078234152/yMJNWVp.png?ex=688dce28&is=688c7ca8&hm=1b74d8692de3e46d1ab6806825d3f2f896633e757a3bb5425618cdd6e713d347&" class="active" alt="Product Image 1">
+      <img src="https://cdn.discordapp.com/attachments/1274637991716982827/1400759428860612628/SignatureOversizedHoodieGrey4.png?ex=688dce60&is=688c7ce0&hm=b3884311fefe03efc0bc1d689615508c5ebc3052cb83c09f839373358e4e97ce&" alt="Product Image 2">
+      <img src="https://cdn.discordapp.com/attachments/1274637991716982827/1400759195078234152/yMJNWVp.png?ex=688dce28&is=688c7ca8&hm=1b74d8692de3e46d1ab6806825d3f2f896633e757a3bb5425618cdd6e713d347&" alt="Product Image 3">
+      <img src="https://cdn.discordapp.com/attachments/1274637991716982827/1400759428860612628/SignatureOversizedHoodieGrey4.png?ex=688dce60&is=688c7ce0&hm=b3884311fefe03efc0bc1d689615508c5ebc3052cb83c09f839373358e4e97ce&" alt="Product Image 4">
+      <img src="https://cdn.discordapp.com/attachments/1274637991716982827/1400759195078234152/yMJNWVp.png?ex=688dce28&is=688c7ca8&hm=1b74d8692de3e46d1ab6806825d3f2f896633e757a3bb5425618cdd6e713d347&" alt="Product Image 5">
+    </div>
+
+    <div class="thumbnails">
+      <img src="https://cdn.discordapp.com/attachments/1274637991716982827/1400759195078234152/yMJNWVp.png?ex=688dce28&is=688c7ca8&hm=1b74d8692de3e46d1ab6806825d3f2f896633e757a3bb5425618cdd6e713d347&" class="selected" onclick="changeImage(0)">
+      <img src="https://cdn.discordapp.com/attachments/1274637991716982827/1400759428860612628/SignatureOversizedHoodieGrey4.png?ex=688dce60&is=688c7ce0&hm=b3884311fefe03efc0bc1d689615508c5ebc3052cb83c09f839373358e4e97ce&" onclick="changeImage(1)">
+      <img src="https://cdn.discordapp.com/attachments/1274637991716982827/1400759195078234152/yMJNWVp.png?ex=688dce28&is=688c7ca8&hm=1b74d8692de3e46d1ab6806825d3f2f896633e757a3bb5425618cdd6e713d347&" onclick="changeImage(2)">
+      <img src="https://cdn.discordapp.com/attachments/1274637991716982827/1400759428860612628/SignatureOversizedHoodieGrey4.png?ex=688dce60&is=688c7ce0&hm=b3884311fefe03efc0bc1d689615508c5ebc3052cb83c09f839373358e4e97ce&" onclick="changeImage(3)">
+      <img src="https://cdn.discordapp.com/attachments/1274637991716982827/1400759195078234152/yMJNWVp.png?ex=688dce28&is=688c7ca8&hm=1b74d8692de3e46d1ab6806825d3f2f896633e757a3bb5425618cdd6e713d347&" onclick="changeImage(4)">
+    </div> 
+
+    <div class="product-description">
+      <strong>M.R.P - Rs 499 only</strong><br><br>
+      <strong>Product Description:</strong><br>
+      Experience premium comfort and style with our high-quality cotton T-shirt. This T-shirt is <strong>made from breathable, stretchable, and durable fabric</strong> that feels as good as it looks.<br><br>
+      - Made with best-in-class cotton<br>
+      - Stretchable and retains shape<br>
+      - Long-lasting and fade-resistant<br>
+      - Smooth, shiny finish for a premium look
+    </div>
+
+    <div class="sizes">
+      <button onclick="selectSize(this, 'https://www.youtube.com/watch?v=qmqNgz69O4M')">L</button>
+      <button onclick="selectSize(this, 'https://www.youtube.com/watch?v=kNAqbTbBTGg')">X</button>
+      <button onclick="selectSize(this, 'https://www.youtube.com/watch?v=kNAqbTbBTGg')">XL</button>
+      <button onclick="selectSize(this, 'https://www.youtube.com/watch?v=zmwfd8x0DrM&list=RDzmwfd8x0DrM&start_radio=1')">XXL</button>
+      <button onclick="selectSize(this, 'https://www.youtube.com/watch?v=zmwfd8x0DrM&list=RDzmwfd8x0DrM&start_radio=1')">XXXL</button>
+    </div>
+
+    <a id="buyBtn" class="buy-button" href="https://www.youtube.com/watch?v=qmqNgz69O4M" target="_blank">Buy Now</a>
+  </div>
+
+  <script>
+    function changeImage(index) {
+      const images = document.querySelectorAll('.slider img');
+      const thumbs = document.querySelectorAll('.thumbnails img');
+      images.forEach(img => img.classList.remove('active'));
+      thumbs.forEach(thumb => thumb.classList.remove('selected'));
+      images[index].classList.add('active');
+      thumbs[index].classList.add('selected');
+    }
+
+    function selectSize(btn, link) {
+      document.querySelectorAll('.sizes button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('buyBtn').href = link;
+    }
+  </script>
+
+</body>
+</html>
